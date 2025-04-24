@@ -1,5 +1,7 @@
+# [AI注释] 导入FastAPI的路由器
 from fastapi import APIRouter
 
+# [AI注释] 导入所有控制器模块
 from module_admin.controller.cache_controller import cacheController
 from module_admin.controller.captcha_controller import captchaController
 from module_admin.controller.car_driver_controller import carDriverController
@@ -26,6 +28,8 @@ from module_app.controller.app_login_controller import appLoginController
 from module_gen.controller.gen_controller import gen1Controller
 from module_website.controller.home_controller import homeRouter
 
+# [AI注释] 定义后台管理系统的路由控制器列表
+# 每个控制器都包含路由对象和对应的标签
 admin_controllers = [
     {'router': loginController, 'tags': ['登录模块']},
     {'router': captchaController, 'tags': ['验证码模块']},
@@ -51,29 +55,33 @@ admin_controllers = [
     {'router': carDriverController, 'tags': ['测试业务']},
     {'router': studentInfoController, 'tags': ['测试业务']},
     {'router': importController, 'tags': ['导入数据']}
-
-
-
 ]
 
+# [AI注释] 定义移动应用的路由控制器列表
+# 每个控制器包含路由对象、URL前缀和标签
 app_controllers = [
     {'router': appLoginController, 'prefix': '/wechat', 'tags': ['登录模块']},
 ]
 
+# [AI注释] 获取后台管理系统的路由
+# 创建一个基础路由器，并将所有后台控制器添加到该路由器中
 def get_admin_router():
     admin_router = APIRouter(prefix="")
     for controller in admin_controllers:
         admin_router.include_router(router=controller.get('router'), tags=controller.get('tags'))
     return admin_router
 
+# [AI注释] 获取移动应用的路由
+# 创建一个带前缀的路由器，并将所有移动应用控制器添加到该路由器中
 def get_app_router():
     app_router = APIRouter(prefix="/api/v1")
     for controller in app_controllers:
-        app_router.include_router(router=controller.get('router'), prefix=controller.get('prefix') ,
-                                  tags=controller.get('tags'))
+        app_router.include_router(router=controller.get('router'), prefix=controller.get('prefix'),
+                                tags=controller.get('tags'))
     return app_router
 
-
+# [AI注释] 注册所有路由
+# 创建一个总路由器，并将后台路由和移动应用路由都包含进来
 def register_router():
     all_router = APIRouter()
     all_router.include_router(router=get_admin_router())
