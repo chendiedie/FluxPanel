@@ -22,9 +22,9 @@ class AppSettings(BaseSettings):
     # [AI注释] 静态文件路径
     app_static_path: str = os.path.join(os.getcwd(), "static/templates")
     # [AI注释] 服务器监听地址
-    app_host: str = '0.0.0.0'
+    app_host: str = '127.0.0.1'
     # [AI注释] 服务器监听端口
-    app_port: int = 9099
+    app_port: int = 8080
     # [AI注释] 应用版本号
     app_version: str = '1.0.0'
     # [AI注释] 是否启用热重载
@@ -62,15 +62,15 @@ class DataBaseSettings(BaseSettings):
     # [AI注释] 数据库类型，支持mysql或postgresql
     db_type: Literal['mysql', 'postgresql'] = 'mysql'
     # [AI注释] 数据库主机地址
-    db_host: str = '127.0.0.1'
+    db_host: str = '121.40.160.127'
     # [AI注释] 数据库端口
     db_port: int = 3306
     # [AI注释] 数据库用户名
-    db_username: str = 'root123'
+    db_username: str = 'root'
     # [AI注释] 数据库密码
-    db_password: str = 'xxxx'
+    db_password: str = 'wsxyc330'
     # [AI注释] 数据库名称
-    db_database: str = 'xxxx'
+    db_database: str = 'flux-data'
     # [AI注释] 是否打印SQL语句
     db_echo: bool = True
     # [AI注释] 连接池最大溢出数

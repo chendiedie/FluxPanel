@@ -61,8 +61,8 @@ onMounted(() => {
         }
     }
 
-    ws.value.onclose = () => {
-        console.log('WebSocket 连接关闭')
+    ws.value.onclose = (e) => {
+        console.error('WebSocket 连接关闭', e)
     }
 })
 

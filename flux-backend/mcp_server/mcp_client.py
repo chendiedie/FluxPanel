@@ -19,8 +19,12 @@ class MCPClient:
         """初始化 MCP 客户端"""
         self.exit_stack = AsyncExitStack()
         self.openai_api_key = os.getenv("OPENAI_API_KEY")  # 读取 OpenAI API Key
+        
         self.base_url = os.getenv("OPENAI_API_URL")  # 读取 BASE YRL
         self.model = os.getenv("OPENAI_API_MODEL")  # 读取 model
+        print(self.openai_api_key, 'openai_api_key')
+        print(self.base_url, 'base_url')
+        print(self.model, 'model')
         if not self.openai_api_key:
             raise ValueError("❌ 未找到 OpenAI API Key，请在 .env 文件中设置 OPENAI_API_KEY")
         self.client = AsyncOpenAI(api_key=self.openai_api_key, base_url=self.base_url)  # 创建OpenAI client
@@ -30,6 +34,7 @@ class MCPClient:
 
     async def connect_to_server(self, server_script_path: str):
         """连接到 MCP 服务器并列出可用工具"""
+        print(server_script_path, 'server_script_path')
         is_python = server_script_path.endswith('.py')
         is_js = server_script_path.endswith('.js')
         if not (is_python or is_js):
